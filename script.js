@@ -98,4 +98,16 @@ function updateMoodChart(){
 document.addEventListener("DOMContentLoaded", ()=>{
     renderMoodHistory();
     updateMoodChart();
-})
+});
+
+//download data as JSON file
+document.getElementById("download-data").addEventListener("click", ()=>{
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(moodData, null, 2));
+    const downloadAnchor = document.createElement("a");
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", "mood-data.json");
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    document.body.removeChild(downloadAnchor);
+
+});
